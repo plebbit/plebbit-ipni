@@ -1,0 +1,56 @@
+version: "3.3"
+
+services:
+  index-provider:
+    container_name: index-provider
+    image: node:22
+    command: PROVIDER_PATH=.index-provider bin/index-provider daemon
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    working_dir: /home/plebbit-ipni
+    volumes:
+      - .:/home/plebbit-ipni
+
+  storetheindex:
+    container_name: storetheindex
+    image: node:22
+    command: STORETHEINDEX_PATH=.storetheindex bin/storetheindex daemon
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    working_dir: /home/plebbit-ipni
+    volumes:
+      - .:/home/plebbit-ipni
+
+  indexstar:
+    container_name: indexstar
+    image: node:22
+    command: INDEXSTAR_PATH=.indexstar bin/indexstar --listen :7777 --backends http://127.0.0.1:3000 --providersBackends http://no
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    working_dir: /home/plebbit-ipni
+    volumes:
+      - .:/home/plebbit-ipni
+
+  proxy-server:
+    container_name: proxy-server
+    image: node:22
+    command: sh -c "npm install && node ./proxy-server"
+    restart: always
+    ports:
+      - "80:80"
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    working_dir: /home/plebbit-ipni
+    volumes:
+      - .:/home/plebbit-ipni

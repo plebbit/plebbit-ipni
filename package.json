@@ -1,0 +1,14 @@
+{
+  "name": "plebbit-ipni",
+  "version": "1.0.0",
+  "description": "1. install go https://golang.org/dl/ 2.  ``` cd index-provider && CGO_ENABLED=0 go build -o ../ ./cmd/provider && .. PROVIDER_PATH=.provider ./provider init PROVIDER_PATH=.provider ./provider daemon ```",
+  "main": "log-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "http-proxy": "1.18.1"
+  }
+}

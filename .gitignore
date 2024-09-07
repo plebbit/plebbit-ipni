@@ -1,0 +1,9 @@
+ipfs
+bin/ipfs
+.ipfs
+.index-provider
+.storetheindex
+.indexstar
+node_modules
+TODO.md
+bafy*
