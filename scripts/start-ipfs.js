@@ -9,7 +9,6 @@ try {
 }
 catch (e) {}
 const envHttpRouterUrls = process.env.HTTP_ROUTER_URLS ? process.env.HTTP_ROUTER_URLS.split(',').map(url => url.trim()) : []
-console.log(envHttpRouterUrls)
 
 // use this custom function instead of spawnSync for better logging
 // also spawnSync might have been causing crash on start on windows
