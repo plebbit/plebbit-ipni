@@ -1,5 +1,6 @@
 ipfs
 bin/ipfs
+.env
 .deploy-env
 .ipfs
 .index-provider
