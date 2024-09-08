@@ -15,6 +15,7 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
+    network_mode: host
 
   storetheindex:
     container_name: storetheindex
@@ -30,6 +31,7 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
+    network_mode: host
 
   indexstar:
     container_name: indexstar
@@ -48,6 +50,7 @@ services:
     working_dir: /home/plebbit-ipni
     volumes:
       - .:/home/plebbit-ipni
+    network_mode: host
 
   proxy-server:
     container_name: proxy-server
@@ -63,3 +66,4 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
+    network_mode: host
