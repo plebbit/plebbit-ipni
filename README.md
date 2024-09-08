@@ -9,17 +9,30 @@ It is required to run `index-provider`, `storetheindex`, `indexstar` and `proxy-
 
 #### getting started with docker
 ```
+git clone https://github.com/plebbit/plebbit-ipni.git && cd plebbit-ipni
+
+# init config
+sudo apt install jq
 scripts/init-config.sh
-docker-compose up
+
+# install docker and docker-compose
+sudo apt install docker.io
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+docker compose up
 ```
 
 #### getting started without docker
 ```
+git clone https://github.com/plebbit/plebbit-ipni.git && cd plebbit-ipni
+
 # install node.js
 sudo apt install nodejs npm && sudo npm install -g n && sudo n latest
 npm install
 
 # init config
+sudo apt install jq
 scripts/init-config.sh
 
 # launch all required services
