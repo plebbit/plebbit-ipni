@@ -15,6 +15,13 @@ git clone https://github.com/plebbit/plebbit-ipni.git && cd plebbit-ipni
 sudo apt install jq
 scripts/init-config.sh
 
+# close ports because we're docker in network host mode
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw --force enable
+
 # install docker and docker-compose
 sudo apt install docker.io
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -35,9 +42,16 @@ npm install
 sudo apt install jq
 scripts/init-config.sh
 
-# launch all required services
-PROVIDER_PATH=.index-provider bin/index-provider daemon
-STORETHEINDEX_PATH=.storetheindex bin/storetheindex daemon
-INDEXSTAR_PATH=.indexstar bin/indexstar --listen :7777 --backends http://127.0.0.1:3000 --providersBackends http://no
-node ./proxy-server.js
+# close all ports
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw --force enable
+
+# launch all required services with nohup so they keep running forever
+nohup PROVIDER_PATH=.index-provider bin/index-provider daemon &
+nohup STORETHEINDEX_PATH=.storetheindex bin/storetheindex daemon &
+nohup INDEXSTAR_PATH=.indexstar bin/indexstar --listen :7777 --backends http://127.0.0.1:3000 --providersBackends http://no &
+nohup node ./proxy-server.js &
 ```

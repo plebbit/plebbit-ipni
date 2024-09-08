@@ -1,8 +1,8 @@
 const path = require('path')
 const { spawn, spawnSync, execSync } = require('child_process')
 const ps = require('node:process')
-const ipfsPath = path.resolve(__dirname, 'ipfs')
-const ipfsDataPath = path.resolve(__dirname, '.ipfs')
+const ipfsPath = path.resolve(__dirname, '..', 'bin', 'ipfs')
+const ipfsDataPath = path.resolve(__dirname, '..', '.ipfs')
 const env = {IPFS_PATH: ipfsDataPath}
 
 // use this custom function instead of spawnSync for better logging
@@ -39,8 +39,8 @@ const startIpfs = async () => {
 
   // list of http routers to use
   const httpRouterUrls = [
-    'http://127.0.0.1:8888',
-    // 'https://cid.contact'
+    // 'http://127.0.0.1:8888',
+    'https://routing.lol'
   ]
 
   // create http routers config file
