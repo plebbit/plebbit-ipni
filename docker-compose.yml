@@ -60,8 +60,6 @@ services:
     working_dir: /home/plebbit-ipni
     entrypoint: sh -c "npm install && node ./proxy-server"
     restart: always
-    ports:
-      - "80:80"
     logging:
       options:
         max-size: "10m"
