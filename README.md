@@ -50,8 +50,8 @@ sudo ufw allow http
 sudo ufw --force enable
 
 # launch all required services with nohup so they keep running forever
-nohup PROVIDER_PATH=.index-provider bin/index-provider daemon &
-nohup STORETHEINDEX_PATH=.storetheindex bin/storetheindex daemon &
-nohup INDEXSTAR_PATH=.indexstar bin/indexstar --listen :7777 --backends http://127.0.0.1:3000 --providersBackends http://no &
+PROVIDER_PATH=.index-provider nohup bin/index-provider daemon &
+STORETHEINDEX_PATH=.storetheindex nohup bin/storetheindex daemon &
+INDEXSTAR_PATH=.indexstar nohup bin/indexstar --listen :7777 --backends http://127.0.0.1:3000 --providersBackends http://no &
 nohup node ./proxy-server.js &
 ```

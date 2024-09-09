@@ -59,8 +59,8 @@ const startIpfs = async () => {
     const RouterName = `HttpRouter${i+1}`
     httpRoutersConfig[RouterName] = {Type: 'http', Parameters: {
       Endpoint: httpRouterUrl,
-      MaxProvideBatchSize: 1000, // default 100
-      MaxProvideConcurrency: 1 // default GOMAXPROCS
+      // MaxProvideBatchSize: 1000, // default 100
+      // MaxProvideConcurrency: 1 // default GOMAXPROCS
     }}
     httpRoutersConfig.HttpRoutersParallel.Parameters.Routers[i] = {
       RouterName: RouterName,
