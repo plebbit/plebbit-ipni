@@ -66,8 +66,10 @@ proxy.on('proxyRes', (proxyRes, req, res) => {
   logRes(proxyRes, req)
 })
 
-proxy.on('error', (e) => {
+proxy.on('error', (e, req, res) => {
   console.error(e)
+  // if not ended, will hang forever
+  res.end()
 })
 
 // start server
