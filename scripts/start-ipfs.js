@@ -53,7 +53,8 @@ const startIpfs = async () => {
 
   // create http routers config file
   const httpRoutersConfig = {
-    HttpRoutersParallel: {Type: 'parallel', Parameters: {Routers: []}}
+    HttpRoutersParallel: {Type: 'parallel', Parameters: {Routers: []}},
+    HttpRouterNotSupported: {Type: 'http', Parameters: {Endpoint: 'http://notsupported'}}
   }
   for (const [i, httpRouterUrl] of httpRouterUrls.entries()) {
     const RouterName = `HttpRouter${i+1}`
@@ -69,11 +70,12 @@ const startIpfs = async () => {
     }
   }
   const httpRoutersMethodsConfig = {
-    'find-peers': {RouterName: 'HttpRoutersParallel'},
     'find-providers': {RouterName: 'HttpRoutersParallel'},
-    'get-ipns': {RouterName: 'HttpRoutersParallel'},
     provide: {RouterName: 'HttpRoutersParallel'},
-    'put-ipns': {RouterName: 'HttpRoutersParallel'}
+    // not supported by plebbit trackers
+    'find-peers': {RouterName: 'HttpRouterNotSupported'},
+    'get-ipns': {RouterName: 'HttpRouterNotSupported'},
+    'put-ipns': {RouterName: 'HttpRouterNotSupported'}
   }
   await spawnAsync(ipfsPath, ['config', 'Routing.Type', 'custom'], {env, hideWindows: true})
   await spawnAsync(ipfsPath, ['config', '--json', 'Routing.Routers', JSON.stringify(httpRoutersConfig)], {env, hideWindows: true})
