@@ -47,6 +47,7 @@ sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw allow ssh
 sudo ufw allow http
+sudo ufw allow 9100/tcp # prometheus node exporter
 sudo ufw --force enable
 
 # launch all required services with nohup so they keep running forever
